@@ -8,8 +8,8 @@ SizedBox verticalSpaceWidget() {
   );
 }
 
-SizedBox dualText(String first, String second, Widget? pushedWidget,
-    BuildContext? context, Size size) {
+SizedBox dualText(
+    String first, String second, VoidCallback? callback, Size size) {
   return SizedBox(
     width: size.width * 0.9,
     child: Align(
@@ -23,15 +23,7 @@ SizedBox dualText(String first, String second, Widget? pushedWidget,
           ),
           WidgetSpan(
             child: InkWell(
-              onTap: pushedWidget != null
-                  ? () {
-                      Navigator.push(
-                          context!,
-                          MaterialPageRoute(
-                            builder: (context) => pushedWidget,
-                          ));
-                    }
-                  : null,
+              onTap: callback,
               child: Text(
                 second,
                 style:

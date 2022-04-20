@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../consts/colors_.dart';
-import '../../consts/miscWidgets.dart';
+import '../../consts/misc_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -114,6 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ? FontAwesomeIcons.eye
                                         : FontAwesomeIcons.eyeSlash,
                                     color: fadedColor,
+                                    size: 18,
                                   ),
                                 )),
                           ),
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         verticalSpaceWidget(),
                         dualText("Forgotten your login details? ",
-                            "Get help with logging in.", null, context, size),
+                            "Get help with logging in.", null, size),
                         verticalSpaceWidget(),
                         dashedText(" OR ", size),
                         verticalSpaceWidget(),
@@ -161,8 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
             // we are doing this to prevent the indent of this when soft keyboard
             // is shown
             if (MediaQuery.of(context).viewInsets.bottom == 0)
-              dualText(
-                  "Don't have an account?", " Sign up.", null, context, size),
+              dualText("Don't have an account?", " Sign up.", () {
+                Navigator.of(context).pop();
+              }, size),
             if (MediaQuery.of(context).viewInsets.bottom == 0)
               verticalSpaceWidget(),
           ],

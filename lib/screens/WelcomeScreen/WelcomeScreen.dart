@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram_clone/consts/colors_.dart';
-import 'package:instagram_clone/consts/miscWidgets.dart';
-import 'package:instagram_clone/screens/LoginScreen/LoginScreen.dart';
+import 'package:instagram_clone/consts/misc_widget.dart';
+import 'package:instagram_clone/screens/LoginScreen/loginscreen.dart';
+import 'package:instagram_clone/screens/SignupScreen/SignupScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -43,18 +44,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       dashedText(" OR ", size),
                       verticalSpaceWidget(),
                       // add inkwell if you need a feedback
-                      Text(
-                        "Sign Up with Email Address or Phone Number",
-                        style: TextStyle(
-                            color: blueColor, fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const SignupScreen()));
+                        },
+                        child: Text(
+                          "Sign Up with Email Address or Phone Number",
+                          style: TextStyle(
+                              color: blueColor, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       const Spacer(),
                       Divider(
                         color: fadedColor.withOpacity(0.2),
                         thickness: 1,
                       ),
-                      dualText("Already have an account? ", "Log in.",
-                          const LoginScreen(), context, size),
+                      dualText("Already have an account? ", "Log in.", () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ));
+                      }, size),
                       verticalSpaceWidget(),
                     ],
                   )),
